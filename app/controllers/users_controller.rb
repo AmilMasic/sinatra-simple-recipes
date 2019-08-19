@@ -24,6 +24,15 @@ class UsersController < ApplicationController
     redirect to "/users/#{@user.id}"
   end
 
+  get '/logout' do
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
+  end
+
 
   # GET: /users
   get "/users" do
