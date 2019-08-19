@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.create(username: params["name"], email: params["email"], password: params["password"])
+    @user = User.create(username: params["username"], email: params["email"], password: params["password"])
     @user.save
     # binding.pry
     redirect to "/users/#{@user.id}"
@@ -17,11 +17,15 @@ class UsersController < ApplicationController
 
 
   post '/login' do
-    # binding.pry
-    @user = User.find_by(:username => params[:username])
-    @user.authenticate(params[:password])
-    session[:user_id] = @user.id
-    redirect to "/users/#{@user.id}"
+
+    @user = User.find_by(email: params[:email])
+
+    if @user &&  @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to "/users/#{@user.id}"
+    else
+      redirect to "/signup"
+    end
   end
 
   get '/logout' do
@@ -41,6 +45,8 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
+    @user = User.find_by_id(params[:id])
+    # binding.pry
     erb :"/users/show.html"
   end
 
