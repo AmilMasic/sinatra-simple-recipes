@@ -1,1 +1,19 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Hello, <%=@user.username%>.</h1>
+
+<h2>Create new recipe:</h2>
+<form action="/recipes" method="post">
+  <label>Recipe Name:</label>
+  <br>
+  <input type="text" name="recipe[name]">
+  <br>
+  <label>Category:</label>
+  <br>
+  <input type="text" name="recipe[kategory]" >
+  <br>
+  <label>Cooking Time:</label>
+  <br>
+  <input type="integer" name="recipe[cook_time]" placeholder="45">
+  <br>
+  <br>
+  <input type="submit" name="submit" value="Create recipe">
+</form>

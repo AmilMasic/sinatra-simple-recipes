@@ -7,11 +7,15 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/new
   get "/recipes/new" do
+    @user = current_user
     erb :"/recipes/new.html"
   end
 
   # POST: /recipes
   post "/recipes" do
+    @user = current_user
+    @recipe = Recipe.create(params[:recipe])
+    @recipe.save
     redirect "/recipes"
   end
 
