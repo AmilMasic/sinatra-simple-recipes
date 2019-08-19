@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :"/users/signup"
+    if !logged_in?
+      erb :"/users/signup"
+    else
+      redirect to "/users/#{@user.id}"
+    end
   end
 
   post '/signup' do
@@ -16,7 +20,11 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :"/users/login"
+    if !logged_in?
+      erb :"/users/login"
+    else
+      redirect to "/users/#{@user.id}"
+    end
   end
 
 
