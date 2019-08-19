@@ -3,22 +3,20 @@ class UsersController < ApplicationController
   get '/signup' do
     erb :"/users/signup"
   end
+
+  post '/signup' do
+    @user = User.create(username: params["name"], email: params["email"], password: params["password"])
+    @user.save
+    # binding.pry
+    redirect to "/users/#{@user.id}"
+  end
+
   get '/login' do
     erb :"/users/login"
   end
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
-  end
-
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new.html"
-  end
-
-  # POST: /users
-  post "/users" do
-    redirect "/users"
   end
 
   # GET: /users/5
