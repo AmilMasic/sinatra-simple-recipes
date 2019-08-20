@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
   # GET: /recipes/5
   get "/recipes/:id" do
     # show the specific recipe route
+    # binding.pry
     @recipe = Recipe.find_by_id(params[:id])
     # find recipe
     # send user to view
@@ -44,11 +45,13 @@ class RecipesController < ApplicationController
 
   # PATCH: /recipes/5
   patch "/recipes/:id" do
-    # after submiting the edit form for recipes
-    # load current recipe
+    # binding.pry
+    @recipe = Recipe.find_by_id(params[:id])
+    @recipe.update(params[:recipe])
+    # binding.pry
     # update current recipe
     # route to specific recipe
-    redirect "/recipes/:id"
+    redirect "/recipes/#{@recipe.id}"
   end
 
   # DELETE: /recipes/5/delete
