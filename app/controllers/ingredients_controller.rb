@@ -2,6 +2,8 @@ class IngredientsController < ApplicationController
 
   # GET: /ingredients
   get "/ingredients" do
+    @ingredients = Ingredient.all
+
     erb :"/ingredients/index.html"
   end
 
@@ -12,6 +14,7 @@ class IngredientsController < ApplicationController
 
   # POST: /ingredients
   post "/ingredients" do
+    @ingredient = Ingredient.create(params[:ingredient])
     redirect "/ingredients"
   end
 
