@@ -3,18 +3,20 @@ class RecipesController < ApplicationController
   # GET: /recipes
   get "/recipes" do
     @user = current_user
+
     erb :"/recipes/index.html"
   end
 
   # GET: /recipes/new
   get "/recipes/new" do
+      # binding.pry
     @user = current_user
     erb :"/recipes/new.html"
   end
 
   # POST: /recipes
   post "/recipes" do
-    @user = current_user
+    @user = User.find_by(id: session[:user_id]) if session[:user_id]
 
     @recipe = Recipe.create(params[:recipe])
     @recipe.save
