@@ -56,8 +56,13 @@ class RecipesController < ApplicationController
 
   # DELETE: /recipes/5/delete
   delete "/recipes/:id/delete" do
-    # deletes the current recipe
-    # redirect to all recipes
-    redirect "/recipes"
+      @recipe = Recipe.find_by_id(params[:id])
+      if @recipe && @recipe.user == current_user
+        @recipe.delete
+      else
+      redirect to '/login'
+    end
+      redirect to '/recipes'
   end
+
 end

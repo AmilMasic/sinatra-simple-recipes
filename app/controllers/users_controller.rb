@@ -21,8 +21,11 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    binding.pry
+    @user = current_user
     if !logged_in?
       erb :"/users/login"
+      
     else
       redirect to "/users/#{@user.id}"
     end
@@ -58,7 +61,7 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
-    @user = User.find_by_id(params[:id])
+    @user = current_user
     # binding.pry
     erb :"/users/show.html"
   end
