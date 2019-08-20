@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/5/edit
   get "/recipes/:id/edit" do
-    # after pressing edit button on show.recipes
+  @recipe = Recipe.find_by_id(params[:id])
     # load specific recipe into a var
     # route over to
     erb :"/recipes/edit.html"

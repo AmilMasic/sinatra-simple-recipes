@@ -1,5 +1,22 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Details about <%=@recipe.name%></h1>
 
-<!-- load form to edit specific recipe -->
+<!-- create form that shows information about the specific recipe -->
+<form action="/recipes/<%=@recipe.id%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <label>Recipe Name:</label>
+  <br>
+  <input type="text" name="recipe[name]" value="<%=@recipe.name%>">
+  <br>
+  <label>Recipe Category:</label>
+  <br>
+  <input type="text" name="recipe[kategory]" value="<%=@recipe.kategory%>">
+  <br>
+  <label>Cook Time: (in minutes)</label>
+  <br>
+  <input type="text" name="recipe[cook_time]" value="<%=@recipe.cook_time%>">
 
-<!-- load information from specific recipe into form -->
+  <br>
+  <br>
+  <input type="submit" name="submit" value="Edit Recipe">
+
+</form>
