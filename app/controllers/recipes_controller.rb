@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
 
   # POST: /recipes
   post "/recipes" do
+    # binding.pry
     @user = User.find_by(id: session[:user_id]) if session[:user_id]
 
     @recipe = Recipe.create(params[:recipe])
