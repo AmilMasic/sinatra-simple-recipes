@@ -7,14 +7,25 @@
   <br>
   <input type="text" name="recipe[name]" value="<%=@recipe.name%>">
   <br>
+  <br>
   <label>Recipe Category:</label>
   <br>
   <input type="text" name="recipe[kategory]" value="<%=@recipe.kategory%>">
   <br>
+  <br>
   <label>Cook Time: (in minutes)</label>
   <br>
   <input type="text" name="recipe[cook_time]" value="<%=@recipe.cook_time%>">
-
+  <br>
+  <br>
+  <label>Ingredients:</label>
+  <br>
+  <textarea name="recipe[ingredients]" rows="20" cols="40"><%=@recipe.ingredients%></textarea>
+  <br><br>
+  <label>Instructions:</label>
+  <br>
+  <textarea name="recipe[instructions]" rows="14" cols="100"><%=@recipe.instructions%></textarea>
+  <br>
   <br>
   <br>
   <input type="submit" name="submit" value="Edit Recipe">
