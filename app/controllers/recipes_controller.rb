@@ -38,17 +38,25 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/5/edit
   get "/recipes/:id/edit" do
-  @recipe = Recipe.find_by_id(params[:id])
+    @recipe = Recipe.find_by_id(params[:id])
+    if @recipe && @recipe.user == current_user
     # load specific recipe into a var
     # route over to
-    erb :"/recipes/edit.html"
+      erb :"/recipes/edit.html"
+    else
+      redirect "/login"
+    end
   end
 
   # PATCH: /recipes/5
   patch "/recipes/:id" do
     # binding.pry
     @recipe = Recipe.find_by_id(params[:id])
-    @recipe.update(params[:recipe])
+    if @recipe && @recipe.user == current_user
+      @recipe.update(params[:recipe])
+    else
+      redirect "/recipes/#{@recipe.id}/edit"
+    end
     # binding.pry
     # update current recipe
     # route to specific recipe
