@@ -9,14 +9,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-      if params[:username] == "" || params[:email] == "" || params[:password] == ""
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect to '/signup'
+    elsif
+        User.all.find_by(email: params["email"])
         redirect to '/signup'
     else
-      @user = User.create(username: params["username"], email: params["email"], password: params["password"])
-      @user.save
-      session[:user_id] = @user.id
-
-      redirect to "/users/#{@user.id}"
+        @user = User.create(username: params["username"], email: params["email"], password: params["password"])
+        @user.save
+        session[:user_id] = @user.id
+        redirect to "/users/#{@user.id}"
     end
   end
 

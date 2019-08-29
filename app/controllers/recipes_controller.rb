@@ -9,10 +9,12 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/new
   get "/recipes/new" do
-      # binding.pry
-    @user = current_user
-    erb :"/recipes/new.html"
+    # binding.pry
+      redirect_if_not_logged_in
+      @user = current_user
+      erb :"/recipes/new.html"
   end
+
 
   # POST: /recipes
   post "/recipes" do
