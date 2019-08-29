@@ -20,11 +20,14 @@ class RecipesController < ApplicationController
   post "/recipes" do
     # binding.pry
     @user = User.find_by(id: session[:user_id]) if session[:user_id]
-
     @recipe = Recipe.create(params[:recipe])
-    @recipe.save
-    @user.recipes << @recipe
-    redirect "/recipes"
+    if @recipe.name != ""
+      @recipe.save
+      @user.recipes << @recipe
+      redirect "/recipes"
+    else
+      redirect to "/recipes/new"
+    end
   end
 
   # GET: /recipes/5
