@@ -3,29 +3,32 @@
 
 <!-- gives option to delete the recipe -->
 
-<h1>Details about <%=@recipe.name%></h1>
-
-<!-- create form that shows information about the specific recipe -->
-<form action="/recipes/<%=@recipe.id%>/delete" method="post">
-  <input type="hidden" name="_method" value="delete">
-
-  <label>Recipe Category:</label>
+  <li>
+    <ul>
+      <h1>Details about: <%=@recipe.name%></h1>
+    </ul>
+    <br>
+    <ul>
+      <h4>Recipe Category: <%=@recipe.kategory%></h4>
+    </ul>
+    <br>
+    <ul>
+      <h4>Cook Time(in minutes): <%=@recipe.cook_time%></h4>
+    </ul>
+    <br>
+    <ul>
+      <h5>Ingredients: <%=@recipe.ingredients%></h5>
+    </ul>
+    <br>
+    <ul>
+      <h5>Instructions: <%=@recipe.instructions%></h5>
+    </ul>
+    <br>
+  </li>
   <br>
-  <input type="text" name="recipe[kategory]" value="<%=@recipe.kategory%>">
   <br>
-  <label>Cook Time: (in minutes)</label>
-  <br>
-  <input type="text" name="recipe[cook_time]" value="<%=@recipe.cook_time%>">
-  <br>
-  <br>
-  <label>Ingredients:</label>
-  <br>
-  <textarea name="recipe[ingredients]" rows="20" cols="40"><%=@recipe.ingredients%></textarea>
-  <br><br>
-  <label>Instructions:</label>
-  <br>
-  <textarea name="recipe[instructions]" rows="14" cols="100"><%=@recipe.instructions%></textarea>
-  <br>
+  <form action="/recipes/<%=@recipe.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
   <input type="submit" name="submit" value="Delete Recipe">
 
 </form>
