@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
   post "/recipes" do
     # binding.pry
     @user = User.find_by(id: session[:user_id]) if session[:user_id]
-    @recipe = Recipe.create(params[:recipe])
+    @recipe = Recipe.new(params[:recipe])
     if @recipe.name != ""
       @recipe.save
       @user.recipes << @recipe
